@@ -1,8 +1,9 @@
 package Account;
 
-import src.entity.Agency;
 import src.entity.Account;
 import java.time.LocalDate;
+
+import Agency.Agency;
 
 
 public class SalaryAccount extends Account{

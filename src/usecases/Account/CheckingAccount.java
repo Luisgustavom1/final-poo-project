@@ -1,9 +1,10 @@
 package Account;
 
 import src.entity.Account;
-import src.entity.Agency;
 
 import java.time.LocalDate;
+
+import Agency.Agency;
 
 
 public class CheckingAccount extends Account {
