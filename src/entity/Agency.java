@@ -1,3 +1,6 @@
+package src.entity;
+
+
 public class Agency {
     private int number;
     private String name;
@@ -7,6 +10,11 @@ public class Agency {
         this.number = number;
         this.name = name;
         this.address = address;
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public int getNumber() {

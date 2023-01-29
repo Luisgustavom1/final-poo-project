@@ -20,6 +20,11 @@ public abstract class Account {
         this.agency = agency;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
     public boolean isActive() {
         return isActive;
     }
@@ -38,6 +43,7 @@ public abstract class Account {
 
     public double getBalance() {
         return balance;
+
     }
 
     public void setBalance(double balance) {
