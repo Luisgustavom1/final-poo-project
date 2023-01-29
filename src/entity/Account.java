@@ -1,7 +1,7 @@
-package src.entity;
-import java.time.LocalDate;
+package entity;
 
-import Agency.Agency;
+import java.time.LocalDate;
+import usecases.Agency.Agency;
 
 public abstract class Account {
     private String password;

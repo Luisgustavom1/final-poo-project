@@ -1,9 +1,9 @@
-package Account;
+package usecases.Account;
 
-import src.entity.Account;
+import entity.Account;
 import java.time.LocalDate;
 
-import Agency.Agency;
+import usecases.Agency.Agency;
 
 
 public class SavingAccount extends Account {
