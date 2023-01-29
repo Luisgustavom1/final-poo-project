@@ -1,5 +1,6 @@
 import usecases.Agency.Agency;
 import entity.Functionary;
+import entity.Address;
 import java.time.LocalDate;
 
 public class Manager extends Functionary{

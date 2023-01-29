@@ -1,4 +1,6 @@
 import entity.Person;
+import entity.Account;
+import entity.Address;
 import java.time.LocalDate;
 public class Client extends Person{
     private String educationLevel;
