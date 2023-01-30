@@ -1,6 +1,7 @@
 package usecases.Transaction;
 
 import entity.*;
+import exceptions.InsufficientBalanceException;
 import java.time.LocalDate;
 
 public class PaymentTransaction extends Transaction {
@@ -18,7 +19,9 @@ public class PaymentTransaction extends Transaction {
 
   public double execute() {
     this.getAccount().setLastTransactionAt(LocalDate.now());
-    // validar se o valor é maior q o valor total
+    if (this.getValue() > this.getAccount().getBalance()) {
+      throw new InsufficientBalanceException("Insufficient balance");
+    }
     double valueUpdated = this.getAccount().getBalance() - this.getValue();
     this.getAccount().setBalance(valueUpdated);
     return valueUpdated; 
