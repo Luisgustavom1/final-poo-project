@@ -3,23 +3,20 @@ package usecases.Transaction;
 import entity.*;
 import java.time.LocalDate;
 
-public class DepositTransaction extends Transaction {
-  public DepositTransaction (
-    double value,
+public class BalanceTransaction extends Transaction {
+  public BalanceTransaction (
     Account account,
     String channel
   ) {
     super(
-      value,
+      0.00,
       account,
       channel
     );
   }
 
   public double execute() {
-    double valueUpdated = this.getAccount().getBalance() + this.getValue();
     this.getAccount().setLastTransactionAt(LocalDate.now());
-    this.getAccount().setBalance(valueUpdated);
-    return valueUpdated;
+    return this.getAccount().getBalance();
   }
 }

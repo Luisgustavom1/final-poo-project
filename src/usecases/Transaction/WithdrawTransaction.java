@@ -19,8 +19,8 @@ public class WithdrawTransaction extends Transaction {
   public double execute() {
     this.getAccount().setLastTransactionAt(LocalDate.now());
     // validar se o valor é maior q o valor total
-    double currentValue = this.getAccount().getBalance() - this.getValue();
-    this.getAccount().setBalance(currentValue);
-    return currentValue; 
+    double valueUpdated = this.getAccount().getBalance() - this.getValue();
+    this.getAccount().setBalance(valueUpdated);
+    return valueUpdated; 
   }
 }
