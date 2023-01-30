@@ -19,7 +19,7 @@ public abstract class Transaction {
     this.createdAt = LocalDate.now();
   }
 
-  public abstract void execute();
+  public abstract double execute();
 
   public double getValue() {
     return this.value;

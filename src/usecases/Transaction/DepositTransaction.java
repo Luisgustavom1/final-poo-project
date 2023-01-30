@@ -16,8 +16,10 @@ public class DepositTransaction extends Transaction {
     );
   }
 
-  public void execute() {
+  public double execute() {
+    double currentValue = this.getAccount().getBalance() + this.getValue();
     this.getAccount().setLastTransactionAt(LocalDate.now());
-    this.getAccount().setBalance(this.getAccount().getBalance() + this.getValue());
+    this.getAccount().setBalance(currentValue);
+    return currentValue;
   }
 }
