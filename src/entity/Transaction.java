@@ -1,12 +1,11 @@
 package entity;
 
-import entity.Account;
 import java.time.LocalDate;
 
 public abstract class Transaction {
   private double value;
   private Account account;
-  private LocaleDate createdAt;
+  private LocalDate createdAt;
   private String channel;
 
   public Transaction (
@@ -30,7 +29,7 @@ public abstract class Transaction {
     return this.account;
   }
 
-  public String getCreatedAt() {
+  public LocalDate getCreatedAt() {
     return this.createdAt;
   }
 

@@ -12,13 +12,13 @@ public abstract class Account {
     private LocalDate lastTransactionAt;
     private Agency agency;
 
-    public Account(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, LocalDate lastTransactionAt, Agency agency) {
+    public Account(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, Agency agency) {
         this.password = password;
         this.isActive = isActive;
         this.accNumber = accNumber;
         this.balance = balance;
         this.createdAt = createdAt;
-        this.lastTransactionAt = lastTransactionAt;
+        this.lastTransactionAt = null;
         this.agency = agency;
     }
 
@@ -45,7 +45,6 @@ public abstract class Account {
 
     public double getBalance() {
         return balance;
-
     }
 
     public void setBalance(double balance) {
