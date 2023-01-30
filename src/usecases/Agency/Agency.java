@@ -1,12 +1,13 @@
-package Agency;
+package usecases.Agency;
 
+import entity.Address;
 
 public class Agency {
     private int number;
     private String name;
-    private Adress address;
+    private Address address;
 
-    public Agency(int number, String name, Adress address) {
+    public Agency(int number, String name, Address address) {
         this.number = number;
         this.name = name;
         this.address = address;
@@ -33,11 +34,11 @@ public class Agency {
         this.name = name;
     }
 
-    public Adress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Adress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

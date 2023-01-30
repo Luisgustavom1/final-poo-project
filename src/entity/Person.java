@@ -1,6 +1,6 @@
 package entity;
+
 import java.time.LocalDate;
-import entity.Address;
 
 public abstract class Person{
     private String cpf;

@@ -1,9 +1,9 @@
-package Account;
+package usecases.Account;
 
-import src.entity.Account;
+import entity.Account;
 import java.time.LocalDate;
 
-import Agency.Agency;
+import usecases.Agency.Agency;
 
 
 public class SalaryAccount extends Account{
@@ -11,7 +11,7 @@ public class SalaryAccount extends Account{
     private double limitTransfer;
 
     public SalaryAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, LocalDate lastTransactionAt, Agency agency, double limitWithdraw, double limitTransfer) {
-        super(password,isActive,accNumber,balance,createdAt, lastTransactionAt,agency);
+        super(password,isActive,accNumber,balance,createdAt, agency);
         this.limitWithdraw = limitWithdraw;
         this.limitTransfer = limitTransfer;
     }

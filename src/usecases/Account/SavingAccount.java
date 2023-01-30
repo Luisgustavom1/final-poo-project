@@ -1,16 +1,16 @@
-package Account;
+package usecases.Account;
 
-import src.entity.Account;
+import entity.Account;
 import java.time.LocalDate;
 
-import Agency.Agency;
+import usecases.Agency.Agency;
 
 
 public class SavingAccount extends Account {
     private double incomeMonth;
 
     public SavingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, LocalDate lastTransactionAt, Agency agency,double incomeMonth) {
-        super(password,isActive,accNumber,balance,createdAt, lastTransactionAt, agency);
+        super(password,isActive,accNumber,balance,createdAt, agency);
         this.incomeMonth = incomeMonth;
     }
 
