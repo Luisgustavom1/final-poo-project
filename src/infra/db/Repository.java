@@ -3,7 +3,7 @@ package infra.db;
 import db.*;
 import java.io.*;
 
-public class Repository implements Add {
+public class Repository implements Add, Read {
   private FileOutputStream fileOutputStream;
   private FileInputStream fileInputStream;
 
@@ -22,7 +22,7 @@ public class Repository implements Add {
     } catch (Exception e) {
       this.fileOutputStream = null;
       this.fileInputStream = null;
-      
+
       this.objectOutputStream = null;
       this.objectInputStream = null;
       System.out.println(e.getMessage());
