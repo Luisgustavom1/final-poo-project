@@ -1,10 +1,10 @@
-package usecases.Account;
+package Account;
 
 import entity.Account;
 
 import java.time.LocalDate;
 
-import usecases.Agency.Agency;
+import Agency.Agency;
 
 
 public class CheckingAccount extends Account {

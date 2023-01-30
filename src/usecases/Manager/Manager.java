@@ -1,4 +1,4 @@
-import usecases.Agency.Agency;
+import Agency.Agency;
 import entity.Functionary;
 import entity.Address;
 import java.time.LocalDate;

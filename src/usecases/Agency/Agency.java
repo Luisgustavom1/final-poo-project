@@ -1,4 +1,4 @@
-package usecases.Agency;
+package Agency;
 
 import entity.Address;
 
