@@ -1,4 +1,4 @@
-package usecases.Transaction;
+package Transaction;
 
 import entity.*;
 import java.time.LocalDate;
