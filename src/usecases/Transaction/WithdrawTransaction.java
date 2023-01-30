@@ -2,9 +2,11 @@ package Transaction;
 
 import entity.*;
 import exceptions.InsufficientBalanceException;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class WithdrawTransaction extends Transaction {
+public class WithdrawTransaction extends Transaction implements Serializable {
   public WithdrawTransaction (
     double value,
     Account account,

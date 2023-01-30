@@ -10,7 +10,7 @@ public class SalaryAccount extends Account{
     private double limitWithdraw;
     private double limitTransfer;
 
-    public SalaryAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, LocalDate lastTransactionAt, Agency agency, double limitWithdraw, double limitTransfer) {
+    public SalaryAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, Agency agency, double limitWithdraw, double limitTransfer) {
         super(password,isActive,accNumber,balance,createdAt, agency);
         this.limitWithdraw = limitWithdraw;
         this.limitTransfer = limitTransfer;

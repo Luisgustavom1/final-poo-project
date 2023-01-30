@@ -3,9 +3,10 @@ package Transaction;
 import entity.*;
 import exceptions.GreaterThanZeroException;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class DepositTransaction extends Transaction {
+public class DepositTransaction extends Transaction implements Serializable {
   public DepositTransaction (
     double value,
     Account account,
