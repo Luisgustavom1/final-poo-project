@@ -2,49 +2,49 @@ package infra.menu.account;
 
 import java.io.*;
 public class Login implements Hash {
-    private String username;
+    private String accountNumber;
     private String password;
 
-    public Login(String username, String password) throws IOException {
-        if(login(username,password)){
-            this.username = username;
+    public Login(String accountNumber, String password) throws IOException {
+        if(login(accountNumber,password)){
+            this.accountNumber = accountNumber;
             this.password = password;
             System.out.println("Login Successful!");
         } else {
-            System.out.println("Invalid Username/password!");
+            System.out.println("Invalid Account number/password!");
         }
 
     }
 
-    private boolean login(String username, String password) throws IOException { //Verifica se o Login existe
+    private boolean login(String accountNumber, String password) throws IOException { //Verifica se o Login existe
         String logins;
-        File file = new File("database/login.txt");
+        File file = new File("login.dat");
         BufferedReader br;
         br = new BufferedReader(new FileReader(file)); // faz a leitura do arquivo.
 
         while ((logins = br.readLine()) != null){
             String[] res = logins.split(":"); // faz o split
-            if(res[0].equals(Long.toString(geraHash(username))) && res[1].equals(Long.toString(geraHash(password)))) // achou.
+            if(res[0].equals(Long.toString(geraHash(accountNumber))) && res[1].equals(Long.toString(geraHash(password)))) // achou.
                 return true;
         }
         return false;
     }
 
     //private boolean loginVerify()
-    public void addUser(String username,String password) throws IOException {
-        File file = new File("database/login.txt");
+    public void addUser(String accountNumber,String password) throws IOException {
+        File file = new File("login.dat");
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file,true))); // faz a escrita
 
-        pw.printf("%d:%d\n",geraHash(username),geraHash((password)));
+        pw.printf("%d:%d\n",geraHash(accountNumber),geraHash((password)));
         pw.close();
     }
 
     public String getUsername() {
-        return username;
+        return accountNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getPassword() {
