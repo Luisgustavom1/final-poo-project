@@ -37,11 +37,4 @@ public abstract class Transaction implements Serializable {
   public String getChannel() {
     return this.channel;
   }
-
-  public String toString() {
-    return "Address{" +
-        "Value='" + this.value + '\'' +
-        ", Channel='" + this.channel + "'" +
-        '}';
-  }
 }
