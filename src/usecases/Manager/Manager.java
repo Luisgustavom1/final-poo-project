@@ -1,15 +1,15 @@
-import Agency.Agency;
+import usecases.Agency.AgencyImpl;
 import entity.Functionary;
 import entity.Address;
 import java.time.LocalDate;
 
 public class Manager extends Functionary{
     private boolean hasBasicCourse;
-    private Agency agency;
+    private AgencyImpl agency;
     private LocalDate promotionAt;
     private static double comission;
 
-    public Manager(String cpf, String name, String conjugalStatus, LocalDate birthday, Address address, int workCard, String rg, String sex, String role, double salary, int admissionYearAt, boolean hasBasicCourse, Agency agency, LocalDate promotionAt) {
+    public Manager(String cpf, String name, String conjugalStatus, LocalDate birthday, Address address, int workCard, String rg, String sex, String role, double salary, int admissionYearAt, boolean hasBasicCourse, AgencyImpl agency, LocalDate promotionAt) {
         super(cpf, name, conjugalStatus, birthday, address, workCard, rg, sex, role, salary, admissionYearAt);
         this.hasBasicCourse = hasBasicCourse;
         this.agency = agency;
@@ -24,11 +24,11 @@ public class Manager extends Functionary{
         this.hasBasicCourse = hasBasicCourse;
     }
 
-    public Agency getAgency() {
+    public AgencyImpl getAgency() {
         return agency;
     }
 
-    public void setAgency(Agency agency) {
+    public void setAgency(AgencyImpl agency) {
         this.agency = agency;
     }
 
