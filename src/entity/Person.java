@@ -1,5 +1,4 @@
 package entity;
-
 import java.time.LocalDate;
 
 public abstract class Person {
@@ -14,7 +13,7 @@ public abstract class Person {
             this.name = name;
             this.conjugalStatus = conjugalStatus;
             this.birthday = birthday;
-            this.address = address; 
+            this.address = address;
     }
 
     public String getCpf() {
@@ -49,22 +48,26 @@ public abstract class Person {
         this.birthday = birthday;
     }
 
-    public boolean cpfVerify(String[] cpf){
-        //  Implementação para verificar CPF.
-        return true;
+    public Address getAddress() {
+        return address;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
         return "Person{" +
                 "cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
                 ", conjugalStatus='" + conjugalStatus + '\'' +
                 ", birthday=" + birthday +
+                ", address=" + address +
                 '}';
     }
 
-    public static boolean cpfVerify(String cpf) throws Exception {
+    public boolean cpfVerify(String cpf) throws Exception {
         String CPF = cpf.replaceAll("[^0-9]", "");
 
         int verification=0, aux=10;
@@ -76,7 +79,7 @@ public abstract class Person {
         verification =verification % 11;
         if(verification == Integer.parseInt(String.valueOf(CPF.charAt(9)))){
             verification = 0;
-            verification=0; aux=11;
+            aux=11;
             for (int i = 0; i < 10; i++) {
                 verification += Integer.parseInt(String.valueOf(CPF.charAt(i))) * aux;
                 aux--;
@@ -85,11 +88,9 @@ public abstract class Person {
             verification %= 11;
             if(verification == Integer.parseInt(String.valueOf(CPF.charAt(10))))
                 return true;
-            else
-            throw new Exception("CPF inválido");
+            else throw new Exception("Invalid CPF");
         }else {
-            throw new Exception("CPF inválido");
+            throw new Exception("Invalid CPF");
         }
     }
-
 }
