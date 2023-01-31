@@ -1,6 +1,8 @@
 package entity;
 
-public abstract class Address {
+import java.io.Serializable;
+
+public abstract class Address implements Serializable {
   private String city;
   private String state;
   private String country;

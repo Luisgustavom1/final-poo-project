@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Transaction {
+public abstract class Transaction implements Serializable {
   private double value;
   private Account account;
   private LocalDate createdAt;

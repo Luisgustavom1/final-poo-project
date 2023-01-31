@@ -1,17 +1,17 @@
-import infra.db.Repository;
+import entity.Transaction;
 import usecases.Account.*;
 import usecases.Transaction.*;
 import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
-
-import java.io.IOException;
-import java.time.LocalDate;
+import infra.db.TransactionRepository;
 
 import java.io.*;
-import java.nio.file.*;
+import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Main {
   public static void main(String args[]) throws Exception {
+    TransactionRepository transactionRepository = new TransactionRepository("transaction.dat");
     AddressImpl address = new AddressImpl(
       "city",
       "state",
@@ -41,15 +41,21 @@ public class Main {
     );
 
     try {
-      File file = new File("C:\\Users\\datha\\IdeaProjects\\final-poo-project\\database\\transaction.txt");
-      FileWriter fw = new FileWriter(file.getAbsolutePath());
-      fw.write(transaction.toString());
-      fw.flush();
-      fw.close();
-      // Repository transactionRepository = new Repository(dir.toString());
-      // transactionRepository.write(transaction);
-      // Object obj = transactionRepository.read();
-      // System.out.println("dd " + obj);
+      ArrayList<Transaction> transactions = transactionRepository.read();
+      transactions.add(transaction);
+
+      for (int i = 0; i < transactions.size(); i++) {
+        System.out.println("Transactions antes de salvar " + transactions.get(i).getAccount().getBalance());
+      }
+
+      transactionRepository.write(transactions);
+
+      ArrayList<Transaction> newTransactions = transactionRepository.read();
+
+      System.out.println("\nSalvando....\n");
+      for (int i = 0; i < newTransactions.size(); i++) {
+        System.out.println("Transactions dps de salvar " + newTransactions.get(i).getAccount().getBalance());
+      }
     } catch (IOException e) {
       System.out.println(e.getMessage());
     }

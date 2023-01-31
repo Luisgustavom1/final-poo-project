@@ -27,7 +27,7 @@ public class AddressImpl extends Address {
         ", State='" + this.getState() + '\'' +
         ", Country='" + this.getCountry() + '\'' +
         ", Neighborhood='" + this.getNeighborhood() + '\'' +
-        ", StreetName=" + this.getStreetName() +
+        ", StreetName=" + this.getStreetName() + '\'' +
         ", StreetNumber=" + this.getStreetNumber() +
         '}';
   }

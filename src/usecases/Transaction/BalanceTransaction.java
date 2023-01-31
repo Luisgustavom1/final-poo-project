@@ -1,7 +1,6 @@
 package usecases.Transaction;
 
 import entity.*;
-
 import java.time.LocalDate;
 
 public class BalanceTransaction extends Transaction {
