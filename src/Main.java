@@ -1,14 +1,17 @@
 import infra.db.Repository;
 import usecases.Account.*;
 import usecases.Transaction.*;
-import usecases.Agency.Agency;
+import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
+import java.io.*;
+import java.nio.file.*;
+
 public class Main {
-  public static void main(String args[]) {
+  public static void main(String args[]) throws Exception {
     AddressImpl address = new AddressImpl(
       "city",
       "state",
@@ -17,7 +20,7 @@ public class Main {
       "streetName",
       "streetNumber"
     );
-    Agency agency = new Agency(
+    AgencyImpl agency = new AgencyImpl(
       12345, 
       "Agencia teste",
       address
@@ -38,10 +41,15 @@ public class Main {
     );
 
     try {
-      Repository transactionRepository = new Repository("caminho-do-projeto-no-seu-pc/database/transaction.txt");
-      transactionRepository.add(transaction);
-      Object obj = transactionRepository.read();
-      System.out.println(obj);
+      File file = new File("C:\\Users\\datha\\IdeaProjects\\final-poo-project\\database\\transaction.txt");
+      FileWriter fw = new FileWriter(file.getAbsolutePath());
+      fw.write(transaction.toString());
+      fw.flush();
+      fw.close();
+      // Repository transactionRepository = new Repository(dir.toString());
+      // transactionRepository.write(transaction);
+      // Object obj = transactionRepository.read();
+      // System.out.println("dd " + obj);
     } catch (IOException e) {
       System.out.println(e.getMessage());
     }

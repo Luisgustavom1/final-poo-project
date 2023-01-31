@@ -1,6 +1,5 @@
 package entity;
 
-import entity.Person;
 import java.time.LocalDate;
 
 public abstract class Functionary extends Person{

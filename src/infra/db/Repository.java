@@ -2,8 +2,10 @@ package infra.db;
 
 import db.*;
 import java.io.*;
+import java.util.ArrayList;
+import entity.*;
 
-public class Repository implements Add, Read {
+public class Repository implements Write, Read, Serializable {
   private FileOutputStream fileOutputStream;
   private FileInputStream fileInputStream;
 
@@ -29,7 +31,7 @@ public class Repository implements Add, Read {
     }
   }
 
-  public void add(Object object) throws IOException {
+  public void write(Transaction object) throws IOException {
     try {
       this.objectOutputStream.writeObject(object);
       
@@ -45,10 +47,9 @@ public class Repository implements Add, Read {
 
   public Object read() throws IOException {
     Object object = null;
-
     try {
-      object = this.objectInputStream.readObject();
-      
+      object = (Object) this.objectInputStream.readObject();
+
       this.objectInputStream.close();
       this.fileInputStream.close();
       return object;

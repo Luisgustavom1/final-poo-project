@@ -1,12 +1,11 @@
-package Transaction;
+package usecases.Transaction;
 
 import entity.*;
 import exceptions.InsufficientBalanceException;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PaymentTransaction extends Transaction implements Serializable {
+public class PaymentTransaction extends Transaction {
   public PaymentTransaction (
     double value,
     Account account,

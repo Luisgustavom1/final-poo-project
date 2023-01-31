@@ -1,4 +1,4 @@
-package Address;
+package usecases.Address;
 
 import entity.Address;
 

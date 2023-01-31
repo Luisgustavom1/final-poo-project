@@ -1,11 +1,10 @@
-package Transaction;
+package usecases.Transaction;
 
 import entity.*;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BalanceTransaction extends Transaction implements Serializable {
+public class BalanceTransaction extends Transaction {
   public BalanceTransaction (
     Account account,
     String channel
