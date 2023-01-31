@@ -32,17 +32,19 @@ public class TransactionRepository {
 
   @SuppressWarnings("unchecked")
   public ArrayList<Transaction> read() throws IOException {
+    ArrayList<Transaction> transactions = new ArrayList<>();
+    
     try {
       FileInputStream fileInputStream = new FileInputStream(file);
       ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-      ArrayList<Transaction> transactions = (ArrayList<Transaction>) objectInputStream.readObject();
+      transactions = (ArrayList<Transaction>) objectInputStream.readObject();
       objectInputStream.close();
       fileInputStream.close();
-
-      return transactions;
     } catch (Exception e) {
       throw new IOException(e.getMessage());
+    } finally {
+      return transactions;
     }
   }
 }
