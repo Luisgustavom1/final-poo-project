@@ -1,3 +1,5 @@
+package usecases.Manager;
+
 import usecases.Agency.AgencyImpl;
 import entity.Functionary;
 import entity.Address;
