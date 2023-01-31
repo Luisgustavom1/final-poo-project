@@ -1,8 +1,9 @@
 package entity;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public abstract class Account {
+public abstract class Account implements Serializable {
     private String password;
     private boolean isActive;
     private double accNumber;

@@ -1,8 +1,9 @@
 package entity;
 
 import entity.Address;
+import java.io.Serializable;
 
-public abstract class Agency {
+public abstract class Agency implements Serializable {
     private int number;
     private String name;
     private Address address;
