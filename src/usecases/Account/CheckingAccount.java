@@ -1,12 +1,7 @@
 package usecases.Account;
-
 import entity.Account;
-
+import usecases.Agency.AgencyImpl;
 import java.time.LocalDate;
-
-import usecases.Agency.Agency;
-
-
 
 public class CheckingAccount extends Account {
 
@@ -15,7 +10,7 @@ public class CheckingAccount extends Account {
     private double adminFee;
     
     
-    public CheckingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, Agency agency, double limiteOverdraft, double adminFee) {
+    public CheckingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, AgencyImpl agency, double limiteOverdraft, double adminFee) {
         super(password, isActive, accNumber, balance, createdAt, agency);
         this.limiteOverdraft = limiteOverdraft;
         this.adminFee = adminFee;
