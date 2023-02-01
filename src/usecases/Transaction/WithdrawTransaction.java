@@ -19,12 +19,15 @@ public class WithdrawTransaction extends Transaction {
 
   public double execute(double value) {
     this.getAccount().setLastTransactionAt(LocalDate.now());
+    this.value = value;
+
     if (this.getValue() > this.getAccount().getBalance()) {
       throw new InsufficientBalanceException("Insufficient balance");
     }
-    this.value = value;
-    double valueUpdated = this.getAccount().getBalance() - this.getValue();
-    this.getAccount().setBalance(valueUpdated);
-    return valueUpdated; 
+    else {
+      double valueUpdated = this.getAccount().getBalance() - this.getValue();
+      this.getAccount().setBalance(valueUpdated);
+      return valueUpdated;
+    }
   }
 }
