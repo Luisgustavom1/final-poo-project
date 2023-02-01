@@ -2,6 +2,7 @@ package infra.menu.account;
 
 import entity.Account;
 
+import entity.Address;
 import usecases.Account.*;
 import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
@@ -32,19 +33,9 @@ public class CreateAccount {
     }
 
     public static void ProcessCreateAccountMenu(int itemSelected){
-        AddressImpl address = new AddressImpl(
-            "city",
-            "state",
-            "country",
-            "neighborhood",
-            "streetName",
-            "streetNumber"
-        );
-        AgencyImpl agency = new AgencyImpl(
-            12345, 
-            "Agencia teste",
-            address
-        );
+        AddressImpl address = createAddress(); // cria e retorna um adress
+
+        AgencyImpl agency = createAgency(address); // cria e retorna uma agency
 
         switch (itemSelected) {
             case 1:
@@ -132,5 +123,55 @@ public class CreateAccount {
             System.out.println(e.getMessage());
             CreateAccount.InitMenu();
         }
+    }
+
+    public static AddressImpl createAddress(){
+        Scanner sc = new Scanner(System.in);
+        String city,state,country,neigh,streetName,streetNumber;
+
+        System.out.println("Name of city: ");
+        city = sc.nextLine();
+        System.out.println("State: ");
+        state = sc.nextLine();
+        System.out.println("Country: ");
+        country = sc.nextLine();
+        System.out.println("Name of city: ");
+        neigh = sc.nextLine();
+        System.out.println("Neighborhood: ");
+        streetName = sc.nextLine();
+        System.out.println("Street Name: ");
+        streetNumber = sc.nextLine();
+        System.out.println("Street Number: ");
+
+        AddressImpl address = new AddressImpl(
+                city,
+                state,
+                country,
+                neigh,
+                streetName,
+                streetNumber
+        );
+
+        return address;
+    }
+
+    public static AgencyImpl createAgency(Address address){
+        Scanner sc = new Scanner(System.in);
+        String nameAgency;
+        int numberAgency;
+
+        System.out.println("Number of Agency: ");
+        numberAgency = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Name of Agency: ");
+        nameAgency = sc.nextLine();
+
+        AgencyImpl agency = new AgencyImpl(
+                numberAgency,
+                nameAgency,
+                address
+        );
+
+        return agency;
     }
 }
