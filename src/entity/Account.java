@@ -18,13 +18,22 @@ public abstract class Account implements Serializable {
         this.accNumber = accNumber;
         this.balance = balance;
         this.createdAt = createdAt;
-        this.lastTransactionAt = null;
+        this.lastTransactionAt = LocalDate.now();
         this.agency = agency;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        String lastTransactionAtString = this.lastTransactionAt == null ? "Not found transactions" : this.lastTransactionAt.toString();
+
+        return "Account { " +
+            "AccNumber = '" + this.accNumber + '\'' +
+            ", Balance = '" + this.balance + '\'' +
+            ", Created at = '" + this.createdAt + '\'' +
+            ", Last transaction at = '" + lastTransactionAtString + '\'' +
+            ", Agency name = '" + this.agency.getName() + '\'' +
+            ", Agency number = '" + this.agency.getNumber() + '\'' +
+            '}';
     }
 
     public boolean isActive() {
