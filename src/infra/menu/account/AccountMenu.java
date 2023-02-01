@@ -1,11 +1,13 @@
 package infra.menu.account;
 
 import infra.menu.account.login.Login;
+import infra.menu.account.login.NewLogin;
 
 import java.util.Scanner;
 import java.io.IOException;
 
 public class AccountMenu {
+
     private static Scanner sc = new Scanner(System.in);
 
     public static void InitMenu() {
@@ -16,20 +18,14 @@ public class AccountMenu {
             "2. Create account\n" +
             "3. List all accounts"
         );
+        System.out.printf("Option: ");
         AccountMenu.ProcessAccountMenu(sc.nextInt());
     }
 
     public static void ProcessAccountMenu(int itemSelected){
         switch (itemSelected) {
             case 1:
-                // try {
-                    // Login login = new Login(sc.nextLine(), sc.nextLine());
-
-                    ManageAccount.InitMenu();
-                // } catch (IOException e) {
-                //    System.out.println(e.getMessage());
-                // }
-
+                NewLogin.InitMenu();
             break;
             case 2:
                 CreateAccount.InitMenu();

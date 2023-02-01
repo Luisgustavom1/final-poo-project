@@ -15,12 +15,14 @@ public class ManageAccount {
     private static Scanner sc = new Scanner(System.in);
     private static Account account = null;
 
-    public static void InitMenu() {
+    public static void InitMenu(Account conta) {
+        account = conta;
         System.out.println(
             "\nSelect the option you want\n" +
             "1. Generate Bank Statement\n" +
             "2. Make Transaction\n"
         );
+        System.out.println("Option: ");
         ManageAccount.ProcessManageAccount(sc.nextInt());
     }
 
@@ -36,7 +38,7 @@ public class ManageAccount {
                 System.out.println("Item not found\n");
         } 
 
-        ManageAccount.InitMenu();
+        ManageAccount.InitMenu(account);
     }
 
     public static void CreateTransaction() {
@@ -57,7 +59,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
-                transaction.execute(sc.nextDouble());
+                transaction.execute(0.0);
                 break;
             case 2:
                 System.out.printf("Enter with channel: ");
@@ -65,6 +67,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             case 3:
@@ -73,6 +76,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             case 4:
@@ -81,6 +85,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             default: 
@@ -100,7 +105,7 @@ public class ManageAccount {
             System.out.println("\n==== Transaction created successfully!! ====\n");
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            ManageAccount.InitMenu();
+            ManageAccount.InitMenu(account);
         }
     }
 }
