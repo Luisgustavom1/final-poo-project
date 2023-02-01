@@ -57,7 +57,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
-                transaction.execute(sc.nextDouble());
+                transaction.execute(0.0);
                 break;
             case 2:
                 System.out.printf("Enter with channel: ");
@@ -65,6 +65,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             case 3:
@@ -73,6 +74,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             case 4:
@@ -81,6 +83,7 @@ public class ManageAccount {
                     account,
                     sc.next()
                 );
+                System.out.printf("Enter with value: ");
                 transaction.execute(sc.nextDouble());
                 break;
             default: 
