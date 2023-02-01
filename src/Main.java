@@ -1,9 +1,11 @@
 import entity.Transaction;
+
 import usecases.Account.*;
 import usecases.Transaction.*;
 import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
-import infra.db.TransactionRepository;
+
+import infra.menu.Menu;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +13,6 @@ import java.time.LocalDate;
 
 public class Main {
   public static void main(String args[]) throws Exception {
-    TransactionRepository transactionRepository = new TransactionRepository("transaction.dat");
     AddressImpl address = new AddressImpl(
       "city",
       "state",
@@ -35,29 +36,32 @@ public class Main {
       1000.00, 
       500.00
     );
-    BalanceTransaction transaction = new BalanceTransaction(
-      salaryAccount,
-      "Caixa eletrônico"
-    );
+    // BalanceTransaction transaction = new BalanceTransaction(
+    //   salaryAccount,
+    //   "Caixa eletrônico"
+    // );
 
-    try {
-      ArrayList<Transaction> transactions = transactionRepository.read();
-      transactions.add(transaction);
+    // try {
+    //   ArrayList<Transaction> transactions = transactionRepository.read();
+    //   transactions.add(transaction);
 
-      for (int i = 0; i < transactions.size(); i++) {
-        System.out.println("Transactions antes de salvar " + transactions.get(i).getAccount().getBalance());
-      }
+    //   for (int i = 0; i < transactions.size(); i++) {
+    //     System.out.println("Transactions antes de salvar " + transactions.get(i).getAccount().getBalance());
+    //   }
 
-      transactionRepository.write(transactions);
+    //   transactionRepository.write(transactions);
 
-      ArrayList<Transaction> newTransactions = transactionRepository.read();
+    //   ArrayList<Transaction> newTransactions = transactionRepository.read();
 
-      System.out.println("\nSalvando....\n");
-      for (int i = 0; i < newTransactions.size(); i++) {
-        System.out.println("Transactions dps de salvar " + newTransactions.get(i).getAccount().getBalance());
-      }
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
+    //   System.out.println("\nSalvando....\n");
+    //   for (int i = 0; i < newTransactions.size(); i++) {
+    //     System.out.println("Transactions dps de salvar " + newTransactions.get(i).getAccount().getBalance());
+    //   }
+    // } catch (IOException e) {
+    //   System.out.println(e.getMessage());
+    // }
+
+    Menu menu = new Menu();
+    menu.initMenu();
   }
 }

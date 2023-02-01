@@ -16,7 +16,7 @@ public class ListAccount {
             ArrayList<Object> accounts = accountRepository.read();
 
             for (int c = 0; c < accounts.size(); c++) {
-                System.out.println(accounts.get(c).toString());
+                System.out.println(c + 1 + " - " + accounts.get(c).toString() + "\n");
             }
             System.out.println("");
         } catch (IOException e) {
