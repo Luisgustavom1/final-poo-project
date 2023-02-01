@@ -25,7 +25,7 @@ public abstract class Account implements Serializable {
     @Override
     public String toString() {
         String lastTransactionAtString = this.lastTransactionAt == null ? "Not found transactions" : this.lastTransactionAt.toString();
-
+        // TODO implementar um toString pra cada classe que extende o Account, para printar seu atributo especifico, aquele que não é global. Ex:. SalaryAccount tem limitWithdraw
         return "Account { " +
             "AccNumber = '" + this.accNumber + '\'' +
             ", Balance = '" + this.balance + '\'' +
