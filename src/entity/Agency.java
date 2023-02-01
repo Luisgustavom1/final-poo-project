@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public abstract class Agency implements Serializable {
+public abstract class Agency{
     private int number;
     private String name;
     private Address address;
