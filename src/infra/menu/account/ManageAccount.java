@@ -22,14 +22,14 @@ public class ManageAccount {
             "1. Generate Bank Statement\n" +
             "2. Make Transaction\n"
         );
-        System.out.println("Option: ");
+        System.out.print("Option: ");
         ManageAccount.ProcessManageAccount(sc.nextInt());
     }
 
     public static void ProcessManageAccount(int itemSelected){
         switch (itemSelected) {
             case 1:
-                
+                ManageAccount.CreateBankStatement();
             break;
             case 2:
                 ManageAccount.CreateTransaction();
@@ -41,11 +41,16 @@ public class ManageAccount {
         ManageAccount.InitMenu(account);
     }
 
+    public static void CreateBankStatement(){
+        System.out.printf("===== Generate bank statement of account %f ======\n", account.getAccNumber());
+        ManageAccount.loadTransaction();
+    }
+
     public static void CreateTransaction() {
         Scanner sc = new Scanner(System.in);
         Transaction transaction = null;
         System.out.println(
-            "==== Type of transaction you want to do ====\n" +
+            "==== Type of transaction you want to do =====\n" +
             "1. See Balance \n" +
             "2. Make Deposit\n" +
             "3. Make Payment\n" + 
@@ -106,6 +111,22 @@ public class ManageAccount {
         } catch (IOException e) {
             System.out.println(e.getMessage());
             ManageAccount.InitMenu(account);
+        }
+    }
+
+    public static void loadTransaction(){
+
+        try {
+            ArrayList<Object> transactions = transactionRepository.read();
+
+            for (int c = 0; c < transactions.size(); c++) {
+                Transaction t = (Transaction) transactions.get(c);
+
+                if(t.getAccount().getAccNumber() == account.getAccNumber()) System.out.println(t.getAccount());
+            }
+            System.out.println("");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
