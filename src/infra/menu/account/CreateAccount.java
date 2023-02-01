@@ -135,13 +135,12 @@ public class CreateAccount {
         state = sc.nextLine();
         System.out.println("Country: ");
         country = sc.nextLine();
-        System.out.println("Name of city: ");
-        neigh = sc.nextLine();
         System.out.println("Neighborhood: ");
-        streetName = sc.nextLine();
+        neigh = sc.nextLine();
         System.out.println("Street Name: ");
-        streetNumber = sc.nextLine();
+        streetName = sc.nextLine();
         System.out.println("Street Number: ");
+        streetNumber = sc.nextLine();
 
         AddressImpl address = new AddressImpl(
                 city,
