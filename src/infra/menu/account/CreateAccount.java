@@ -2,6 +2,7 @@ package infra.menu.account;
 
 import entity.Account;
 
+import entity.Address;
 import usecases.Account.*;
 import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
@@ -16,108 +17,98 @@ import java.time.LocalDate;
 public class CreateAccount {
     private static Repository accountRepository = new Repository("accounts.dat");
     private static Scanner sc = new Scanner(System.in);
-    
+
     private static String password;
     private static double accNumber;
     private static double balance;
-    
+
     public static void InitMenu(){
-      System.out.println(
-        "==== Type of account you want to crate ====\n" +
-        "1. Checking account\n" +
-        "2. Savings account\n" +
-        "3. Salary account\n"
-      );
-      CreateAccount.ProcessCreateAccountMenu(sc.nextInt());
+        System.out.println(
+                "\n==== Type of account you want to crate ====\n" +
+                        "1. Checking account\n" +
+                        "2. Savings account\n" +
+                        "3. Salary account"
+        );
+        System.out.print("Option: ");
+        CreateAccount.ProcessCreateAccountMenu(sc.nextInt());
     }
 
     public static void ProcessCreateAccountMenu(int itemSelected){
-        AddressImpl address = new AddressImpl(
-            "city",
-            "state",
-            "country",
-            "neighborhood",
-            "streetName",
-            "streetNumber"
-        );
-        AgencyImpl agency = new AgencyImpl(
-            12345, 
-            "Agencia teste",
-            address
-        );
+        AddressImpl address = createAddress(); // cria e retorna um adress
+
+        AgencyImpl agency = createAgency(address); // cria e retorna uma agency
 
         switch (itemSelected) {
             case 1:
                 CreateAccount.GetDefaultAccountData();
-                System.out.println("\nLimit Overdraft: ");
+                System.out.print("Limit Overdraft: ");
                 double limitOverdraft = sc.nextDouble();
-                System.out.println("\nAdmin Fee: ");
+                System.out.print("Admin Fee: ");
                 double adminFee = sc.nextDouble();
 
                 CreateAccount.SaveAccount(
-                    new CheckingAccount(
-                        password, 
-                        true,
-                        accNumber,
-                        balance,
-                        LocalDate.now(),
-                        agency,
-                        limitOverdraft,
-                        adminFee
-                    )
+                        new CheckingAccount(
+                                password,
+                                true,
+                                accNumber,
+                                balance,
+                                LocalDate.now(),
+                                agency,
+                                limitOverdraft,
+                                adminFee
+                        )
                 );
-            break;
+                break;
             case 2:
                 CreateAccount.GetDefaultAccountData();
-                System.out.println("\nIncome Month: ");
+                System.out.print("Income Month: ");
                 double incomeMonth = sc.nextDouble();
 
                 CreateAccount.SaveAccount(
-                    new SavingAccount(
-                        password, 
-                        true,
-                        accNumber,
-                        balance,
-                        LocalDate.now(),
-                        agency,
-                        incomeMonth
-                    )
+                        new SavingAccount(
+                                password,
+                                true,
+                                accNumber,
+                                balance,
+                                LocalDate.now(),
+                                agency,
+                                incomeMonth
+                        )
                 );
-            break;
+                break;
             case 3:
                 CreateAccount.GetDefaultAccountData();
-                System.out.println("\nLimit Withdraw: ");
+                System.out.print("Limit Withdraw: ");
                 double limitWithdraw = sc.nextDouble();
-                System.out.println("\nLimit Transfer: ");
+                System.out.print("Limit Transfer: ");
                 double limitTransfer = sc.nextDouble();
 
                 CreateAccount.SaveAccount(
-                    new SalaryAccount(
-                        password, 
-                        true,
-                        accNumber,
-                        balance,
-                        LocalDate.now(),
-                        agency,
-                        limitWithdraw,
-                        limitTransfer
-                    )
+                        new SalaryAccount(
+                                password,
+                                true,
+                                accNumber,
+                                balance,
+                                LocalDate.now(),
+                                agency,
+                                limitWithdraw,
+                                limitTransfer
+                        )
                 );
-            break;
+                break;
             default:
                 System.out.println("Item not found\n");
                 CreateAccount.InitMenu();
-        } 
+        }
     }
 
     public static void GetDefaultAccountData() {
-        System.out.println("==== Enter data of your account ====");
-
-        System.out.println("Password: ");
+        System.out.println("\n==== Enter data of your account ====");
+        System.out.print("Password: ");
         password = sc.next();
-        System.out.println("\nAccNumber: ");
+        System.out.print("AccNumber: ");
         accNumber = sc.nextDouble();
-        System.out.println("\nBalance: ");
+        System.out.print("Balance: ");
         balance = sc.nextDouble();
     }
 
@@ -132,5 +123,55 @@ public class CreateAccount {
             System.out.println(e.getMessage());
             CreateAccount.InitMenu();
         }
+    }
+
+    public static AddressImpl createAddress(){
+        String city,state,country,neigh,streetName,streetNumber;
+
+        System.out.println("\n==== Enter data of your address ====");
+        sc.nextLine();
+        System.out.print("Name of city: ");
+        city = sc.nextLine();
+        System.out.print("State: ");
+        state = sc.nextLine();
+        System.out.print("Country: ");
+        country = sc.nextLine();
+        System.out.print("Neighborhood: ");
+        neigh = sc.nextLine();
+        System.out.print("Street Name: ");
+        streetName = sc.nextLine();
+        System.out.print("Street Number: ");
+        streetNumber = sc.nextLine();
+
+        AddressImpl address = new AddressImpl(
+                city,
+                state,
+                country,
+                neigh,
+                streetName,
+                streetNumber
+        );
+
+        return address;
+    }
+
+    public static AgencyImpl createAgency(Address address){
+        String nameAgency;
+        int numberAgency;
+
+        System.out.println("\n==== Enter data of your agency ====");
+        System.out.print("Number of Agency: ");
+        numberAgency = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Name of Agency: ");
+        nameAgency = sc.nextLine();
+
+        AgencyImpl agency = new AgencyImpl(
+                numberAgency,
+                nameAgency,
+                address
+        );
+
+        return agency;
     }
 }
