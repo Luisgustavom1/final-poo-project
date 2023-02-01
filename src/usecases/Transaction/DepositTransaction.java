@@ -12,16 +12,16 @@ public class DepositTransaction extends Transaction {
     String channel
   ) {
     super(
-      value,
       account,
       channel
     );
   }
 
-  public double execute() {
+  public double execute(double value) {
     if (this.getValue() <= 0) {
       throw new GreaterThanZeroException("The deposit must be greater than zero");
     } 
+    this.value = value;
     double valueUpdated = this.getAccount().getBalance() + this.getValue();
     this.getAccount().setLastTransactionAt(LocalDate.now());
     this.getAccount().setBalance(valueUpdated);

@@ -4,23 +4,22 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class Transaction implements Serializable {
-  private double value;
+  protected double value;
   private Account account;
   private LocalDate createdAt;
   private String channel;
 
   public Transaction (
-    double value,
     Account account,
     String channel
   ) {
-    this.value = value;
+    this.value = 0.00;
     this.account = account;
     this.channel = channel;
     this.createdAt = LocalDate.now();
   }
 
-  public abstract double execute();
+  public abstract double execute(double value);
 
   public double getValue() {
     return this.value;
