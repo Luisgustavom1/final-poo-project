@@ -1,19 +1,36 @@
 package infra.menu.account;
 
+import java.util.Scanner;
+
 public class AccountMenu {
+    private static Scanner sc = new Scanner(System.in);
 
-    public static void printAccount(){
-        System.out.println("===== ACCOUNT =====" +
-                "1. Login account" +
-                "2. Create account");
-    }
-
-     public static void printTypeAccount(){
-        System.out.println("===== TYPE ACCOUNT =====" +
-                "1. Checking account" +
-                "2. Savings account" +
-                "3. Salary account"
+    public static void InitMenu() {
+        System.out.println(
+            "==== Account ====\n" +
+            "Select the option you want\n" +
+            "1. Login account\n" +
+            "2. Create account\n" +
+            "3. List all accounts"
         );
+        AccountMenu.ProcessAccountMenu(sc.nextInt());
     }
 
+    public static void ProcessAccountMenu(int itemSelected){
+        switch (itemSelected) {
+            case 1:
+            // login
+            break;
+            case 2:
+                CreateAccount.InitMenu();
+            break;
+            case 3:
+                ListAccount.InitMenu();
+            break;
+            default:
+                System.out.println("Item not found\n");
+        } 
+
+        AccountMenu.InitMenu();
+    }
 }
