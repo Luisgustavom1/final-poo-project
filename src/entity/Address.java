@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public abstract class Address implements Serializable {
+public abstract class Address{
   private String city;
   private String state;
   private String country;

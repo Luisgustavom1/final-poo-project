@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Transaction implements Serializable {
+public abstract class Transaction {
   protected double value;
   private Account account;
   private LocalDate createdAt;
