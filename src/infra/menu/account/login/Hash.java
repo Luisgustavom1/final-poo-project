@@ -1,4 +1,4 @@
-package infra.menu.account;
+package infra.menu.account.login;
 
 public interface Hash {
     default long geraHash(String str){
