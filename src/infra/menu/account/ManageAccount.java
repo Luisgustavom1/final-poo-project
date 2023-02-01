@@ -1,12 +1,9 @@
 package infra.menu.account;
 
 import entity.Transaction;
-
-import exceptions.InsufficientBalanceException;
 import infra.db.Repository;
 import entity.Account;
 import usecases.Transaction.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;

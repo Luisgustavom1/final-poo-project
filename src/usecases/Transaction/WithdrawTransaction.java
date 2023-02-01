@@ -2,8 +2,6 @@ package usecases.Transaction;
 
 import entity.*;
 import exceptions.InsufficientBalanceException;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 
 public class WithdrawTransaction extends Transaction {
@@ -17,6 +15,9 @@ public class WithdrawTransaction extends Transaction {
     );
   }
 
+  /*
+  This is a method to execute a withdraw operation.
+   */
   public double execute(double value) {
     this.getAccount().setLastTransactionAt(LocalDate.now());
     this.value = value;

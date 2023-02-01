@@ -1,11 +1,7 @@
 package infra.menu.account;
 
-import entity.Account;
-
 import infra.db.Repository;
-
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class ListAccount {

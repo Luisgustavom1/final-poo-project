@@ -3,7 +3,6 @@ package infra.menu.account.login;
 import entity.Account;
 import infra.db.Repository;
 import infra.menu.account.ManageAccount;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;

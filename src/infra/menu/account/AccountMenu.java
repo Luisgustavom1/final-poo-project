@@ -1,13 +1,10 @@
 package infra.menu.account;
 
-import infra.menu.account.login.Login;
 import infra.menu.account.login.NewLogin;
 
 import java.util.Scanner;
-import java.io.IOException;
 
 public class AccountMenu {
-
     private static Scanner sc = new Scanner(System.in);
 
     public static void InitMenu() {

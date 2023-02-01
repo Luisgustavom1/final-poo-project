@@ -2,6 +2,9 @@ package usecases.Address;
 
 import entity.Address;
 
+/*
+    This is a implementation of a Address (abstract class).
+ */
 public class AddressImpl extends Address {
   public AddressImpl(
     String city,
