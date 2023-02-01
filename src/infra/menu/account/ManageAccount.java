@@ -2,6 +2,7 @@ package infra.menu.account;
 
 import entity.Transaction;
 
+import exceptions.InsufficientBalanceException;
 import infra.db.Repository;
 import entity.Account;
 import usecases.Transaction.*;
@@ -56,49 +57,53 @@ public class ManageAccount {
             "3. Make Payment\n" + 
             "4. Make Withdraw\n" 
         );
-        
-        switch (sc.nextInt()) {
-            case 1:
-                System.out.printf("Enter with channel: ");
-                transaction = new BalanceTransaction(
-                    account,
-                    sc.next()
-                );
-                transaction.execute(0.0);
-                break;
-            case 2:
-                System.out.printf("Enter with channel: ");
-                transaction = new DepositTransaction(
-                    account,
-                    sc.next()
-                );
-                System.out.printf("Enter with value: ");
-                transaction.execute(sc.nextDouble());
-                break;
-            case 3:
-                System.out.printf("Enter with channel: ");
-                transaction = new PaymentTransaction(
-                    account,
-                    sc.next()
-                );
-                System.out.printf("Enter with value: ");
-                transaction.execute(sc.nextDouble());
-                break;
-            case 4:
-                System.out.printf("Enter with channel: ");
-                transaction = new WithdrawTransaction(
-                    account,
-                    sc.next()
-                );
-                System.out.printf("Enter with value: ");
-                transaction.execute(sc.nextDouble());
-                break;
-            default: 
-                System.out.println("Item not found\n");
-                ManageAccount.CreateTransaction();
+        System.out.printf("Option: ");
+        try {
+            switch (sc.nextInt()) {
+                case 1:
+                    System.out.printf("Enter with channel: ");
+                    transaction = new BalanceTransaction(
+                            account,
+                            sc.next()
+                    );
+                    transaction.execute(0.0);
+                    break;
+                case 2:
+                    System.out.printf("Enter with channel: ");
+                    transaction = new DepositTransaction(
+                            account,
+                            sc.next()
+                    );
+                    System.out.printf("Enter with value: ");
+                    transaction.execute(sc.nextDouble());
+                    break;
+                case 3:
+                    System.out.printf("Enter with channel: ");
+                    transaction = new PaymentTransaction(
+                            account,
+                            sc.next()
+                    );
+                    System.out.printf("Enter with value: ");
+                    transaction.execute(sc.nextDouble());
+                    break;
+                case 4:
+                    System.out.printf("Enter with channel: ");
+                    transaction = new WithdrawTransaction(
+                            account,
+                            sc.next()
+                    );
+                    System.out.printf("Enter with value: ");
+                    transaction.execute(sc.nextDouble());
+                    break;
+                default:
+                    System.out.println("Item not found\n");
+                    ManageAccount.CreateTransaction();
+            }
+            ManageAccount.SaveTransaction(transaction);
         }
-
-        ManageAccount.SaveTransaction(transaction);
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void SaveTransaction(Transaction transaction) {
