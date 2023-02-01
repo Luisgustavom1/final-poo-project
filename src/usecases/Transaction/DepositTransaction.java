@@ -16,14 +16,19 @@ public class DepositTransaction extends Transaction {
     );
   }
 
+  /*
+  This is a method to execute a deposit operation.
+   */
   public double execute(double value) {
     this.value = value;
     if (this.getValue() <= 0) {
       throw new GreaterThanZeroException("The deposit must be greater than zero");
     } 
-    double valueUpdated = this.getAccount().getBalance() + this.getValue();
-    this.getAccount().setLastTransactionAt(LocalDate.now());
-    this.getAccount().setBalance(valueUpdated);
-    return valueUpdated;
+    else {
+      double valueUpdated = this.getAccount().getBalance() + this.getValue();
+      this.getAccount().setLastTransactionAt(LocalDate.now());
+      this.getAccount().setBalance(valueUpdated);
+      return valueUpdated;
+    }
   }
 }

@@ -14,6 +14,9 @@ public class BalanceTransaction extends Transaction {
     );
   }
 
+  /*
+  This is a method to execute a balance operation.
+   */
   public double execute(double value) {
     this.getAccount().setLastTransactionAt(LocalDate.now());
     return this.getAccount().getBalance();

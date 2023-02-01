@@ -1,6 +1,5 @@
 package entity;
 
-import entity.Address;
 import java.io.Serializable;
 
 public abstract class Agency implements Serializable {
