@@ -17,10 +17,10 @@ public class DepositTransaction extends Transaction {
   }
 
   public double execute(double value) {
+    this.value = value;
     if (this.getValue() <= 0) {
       throw new GreaterThanZeroException("The deposit must be greater than zero");
     } 
-    this.value = value;
     double valueUpdated = this.getAccount().getBalance() + this.getValue();
     this.getAccount().setLastTransactionAt(LocalDate.now());
     this.getAccount().setBalance(valueUpdated);
