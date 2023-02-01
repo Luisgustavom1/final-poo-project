@@ -6,7 +6,7 @@ import usecases.Account.*;
 import usecases.Agency.AgencyImpl;
 import usecases.Address.AddressImpl;
 
-import infra.db.AccountRepository;
+import infra.db.Repository;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class CreateAccount {
-    private static AccountRepository accountRepository = new AccountRepository();
+    private static Repository accountRepository = new Repository("accounts.dat");
     private static Scanner sc = new Scanner(System.in);
     
     private static String password;
@@ -123,7 +123,7 @@ public class CreateAccount {
 
     public static void SaveAccount(Account account) {
         try {
-            ArrayList<Account> accounts = accountRepository.read();
+            ArrayList<Object> accounts = accountRepository.read();
             accounts.add(account);
 
             accountRepository.write(accounts);

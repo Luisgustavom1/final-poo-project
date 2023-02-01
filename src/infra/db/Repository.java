@@ -1,17 +1,16 @@
 package infra.db;
 
-import entity.Account;
 import java.io.*;
 import java.util.ArrayList;
 
-public class AccountRepository {
+public class Repository {
   private String file;
 
-  public AccountRepository() {
-    this.file = "accounts.dat";
+  public Repository(String file) {
+    this.file = file;
   }
 
-  public void write(ArrayList<Account> object) throws IOException {
+  public void write(ArrayList<Object> object) throws IOException {
     try {
       FileOutputStream fileOutputStream = new FileOutputStream(file);
       ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -29,20 +28,20 @@ public class AccountRepository {
   }
 
   @SuppressWarnings("unchecked")
-  public ArrayList<Account> read() throws IOException {
-    ArrayList<Account> accounts = new ArrayList<>();
+  public ArrayList<Object> read() throws IOException {
+    ArrayList<Object> objects = new ArrayList<>();
     
     try {
       FileInputStream fileInputStream = new FileInputStream(file);
       ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-      accounts = (ArrayList<Account>) objectInputStream.readObject();
+      objects = (ArrayList<Object>) objectInputStream.readObject();
       objectInputStream.close();
       fileInputStream.close();
     } catch (Exception e) {
       throw new IOException(e.getMessage());
     } finally {
-      return accounts;
+      return objects;
     }
   }
 }
