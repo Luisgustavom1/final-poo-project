@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 public class PaymentTransaction extends Transaction {
   public PaymentTransaction (
-    double value,
     Account account,
     String channel
   ) {

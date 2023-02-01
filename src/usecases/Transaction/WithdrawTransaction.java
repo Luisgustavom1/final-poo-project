@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 public class WithdrawTransaction extends Transaction {
   public WithdrawTransaction (
-    double value,
     Account account,
     String channel
   ) {
