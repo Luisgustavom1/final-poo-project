@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import usecases.Agency.AgencyImpl;
 
 
-public class SalaryAccount extends Account{
+public class SalaryAccount extends Account implements Rendimento{
     private double limitWithdraw;
     private double limitTransfer;
 
@@ -29,5 +29,10 @@ public class SalaryAccount extends Account{
 
     public void setLimitTransfer(double limitTransfer) {
         this.limitTransfer = limitTransfer;
+    }
+
+    @Override
+    public double calculaRendimento() {
+        return 0;
     }
 }

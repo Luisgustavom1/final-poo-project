@@ -21,6 +21,6 @@ public class SavingAccount extends Account implements Rendimento {
 
     @Override
     public double calculaRendimento() {
-        return this.getBalance() * rent;
+        return this.getBalance() * (incomeMonth/100);
     }
 }

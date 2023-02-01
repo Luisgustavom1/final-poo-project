@@ -3,6 +3,8 @@ package infra.menu.account;
 import entity.Transaction;
 import infra.db.Repository;
 import entity.Account;
+import usecases.Account.SalaryAccount;
+import usecases.Account.SavingAccount;
 import usecases.Transaction.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,8 +17,16 @@ public class ManageAccount {
 
     public static void InitMenu(Account conta) {
         account = conta;
+        if(conta instanceof SalaryAccount){
+            System.out.println("\nIncome Prevision: "+
+                    ((SalaryAccount)conta).calculaRendimento());
+        } else if (conta instanceof SavingAccount) {
+            System.out.println("\nIncome Prevision: "+
+                    ((SavingAccount)conta).calculaRendimento());
+        }
+
         System.out.println(
-            "\nSelect the option you want\n" +
+            "Select the option you want\n" +
             "1. Generate Bank Statement\n" +
             "2. Make Transaction\n"
         );
@@ -34,7 +44,7 @@ public class ManageAccount {
             break;
             default:
                 System.out.println("Item not found\n");
-        } 
+        }
 
         ManageAccount.InitMenu(account);
     }
