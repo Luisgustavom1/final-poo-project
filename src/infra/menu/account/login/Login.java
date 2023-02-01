@@ -1,22 +1,23 @@
 package infra.menu.account.login;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class Login implements Hash {
-    private String accountNumber;
+    private double accountNumber;
     private String password;
 
-    public Login(String accountNumber, String password) throws IOException {
-        if(login(accountNumber,password)){
+    public Login(double accountNumber, String password) throws IOException {
+        if(login(Double.toString(accountNumber),password)){
             this.accountNumber = accountNumber;
             this.password = password;
             System.out.println("Login Successful!");
         } else {
-            throw new IOException("Invalid Account number/password!");
+            System.out.println("Invalid Account number/password!");
         }
     }
 
-    private boolean login(String accountNumber, String password) throws IOException { //Verifica se o Login existe
+    public boolean login(String accountNumber, String password) throws IOException { //Verifica se o Login existe
         String logins;
         File file = new File("login.dat");
         BufferedReader br;
@@ -30,20 +31,19 @@ public class Login implements Hash {
         return false;
     }
 
-    //private boolean loginVerify()
-    public void addUser(String accountNumber,String password) throws IOException {
+    public void addUser(double accountNumber,String password) throws IOException {
         File file = new File("login.dat");
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file,true))); // faz a escrita
 
-        pw.printf("%d:%d\n",geraHash(accountNumber),geraHash((password)));
+        pw.printf("%d:%d\n",geraHash(Double.toString(accountNumber)),geraHash((password)));
         pw.close();
     }
 
-    public String getUsername() {
+    public double getUsername() {
         return accountNumber;
     }
 
-    public void setUsername(String accountNumber) {
+    public void setUsername(double accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -54,5 +54,47 @@ public class Login implements Hash {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+
+
+    public static Login printLogin() {
+        Scanner sc = new Scanner(System.in);
+        Login lg = null;
+        String logins;
+        double accNumber;
+
+        System.out.print("===== LOGIN =====\n" +
+                "Account: ");
+        accNumber = sc.nextDouble();
+        System.out.println("Password: ");
+        logins = sc.nextLine();
+
+        try {
+            lg = new Login(accNumber, logins);
+        } catch (IOException e) {
+            System.out.println("Error:" + e);
+        } finally {
+            return lg;
+        }
+    }
+
+    public static Login printAddUser() {
+        Login lg = null;
+        Scanner sc = new Scanner(System.in);
+        String logins;
+        double accNumber;
+        System.out.print("===== LOGIN =====\n" +
+                "Account: ");
+        accNumber = sc.nextDouble();
+        System.out.println("Password: ");
+        logins = sc.nextLine();
+
+        try {
+            lg.addUser(accNumber,logins);
+        } catch (IOException e) {
+            System.out.println("Error:" + e);
+        } finally {
+            return lg;
+        }
+    }
+}
