@@ -15,7 +15,7 @@ public class NewLogin {
         double accNumber;
         String password;
 
-        System.out.print("===== LOGIN =====\n" +
+        System.out.print("\n===== Login =====\n" +
                 "Account: ");
         accNumber = sc.nextDouble();
         sc.nextLine();
