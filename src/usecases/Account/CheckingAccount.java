@@ -3,7 +3,7 @@ import entity.Account;
 import usecases.Agency.AgencyImpl;
 import java.time.LocalDate;
 
-public class CheckingAccount extends Account {
+public class CheckingAccount extends Account implements Rendimento{
     private double limitOverdraft;
     private double adminFee;
     
@@ -28,5 +28,10 @@ public class CheckingAccount extends Account {
 
     public void setAdminFee(double adminFee) {
         this.adminFee = adminFee;
+    }
+
+    @Override
+    public double calculaRendimento() {
+        return this.getBalance() * rent;
     }
 }
