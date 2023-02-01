@@ -126,7 +126,6 @@ public class CreateAccount {
     }
 
     public static AddressImpl createAddress(){
-        Scanner sc = new Scanner(System.in);
         String city,state,country,neigh,streetName,streetNumber;
 
         System.out.println("Name of city: ");
@@ -155,7 +154,6 @@ public class CreateAccount {
     }
 
     public static AgencyImpl createAgency(Address address){
-        Scanner sc = new Scanner(System.in);
         String nameAgency;
         int numberAgency;
 

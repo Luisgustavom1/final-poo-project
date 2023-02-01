@@ -20,10 +20,12 @@ public class PaymentTransaction extends Transaction {
     this.getAccount().setLastTransactionAt(LocalDate.now());
     if (this.getValue() > this.getAccount().getBalance()) {
       throw new InsufficientBalanceException("Insufficient balance");
+
+    } else {
+      this.value = value;
+      double valueUpdated = this.getAccount().getBalance() - this.getValue();
+      this.getAccount().setBalance(valueUpdated);
+      return valueUpdated;
     }
-    this.value = value;
-    double valueUpdated = this.getAccount().getBalance() - this.getValue();
-    this.getAccount().setBalance(valueUpdated);
-    return valueUpdated; 
   }
 }
