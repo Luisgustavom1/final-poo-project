@@ -23,7 +23,7 @@ public class CreateAccount {
     
     public static void InitMenu(){
       System.out.println(
-        "Type of account you want to crate\n" +
+        "==== Type of account you want to crate ====\n" +
         "1. Checking account\n" +
         "2. Savings account\n" +
         "3. Salary account\n"
