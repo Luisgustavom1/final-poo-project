@@ -4,24 +4,22 @@ import usecases.Agency.AgencyImpl;
 import java.time.LocalDate;
 
 public class CheckingAccount extends Account {
-
-    
-    private double limiteOverdraft;
+    private double limitOverdraft;
     private double adminFee;
     
     
-    public CheckingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, AgencyImpl agency, double limiteOverdraft, double adminFee) {
+    public CheckingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, AgencyImpl agency, double limitOverdraft, double adminFee) {
         super(password, isActive, accNumber, balance, createdAt, agency);
-        this.limiteOverdraft = limiteOverdraft;
+        this.limitOverdraft = limitOverdraft;
         this.adminFee = adminFee;
     }
     
-    public double getLimiteOverdraft() {
-        return limiteOverdraft;
+    public double getLimitOverdraft() {
+        return limitOverdraft;
     }
 
-    public void setLimiteOverdraft(double limiteOverdraft) {
-        this.limiteOverdraft = limiteOverdraft;
+    public void setLimitOverdraft(double limitOverdraft) {
+        this.limitOverdraft = limitOverdraft;
     }
 
     public double getAdminFee() {

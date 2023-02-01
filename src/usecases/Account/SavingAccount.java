@@ -6,7 +6,7 @@ import usecases.Agency.AgencyImpl;
 public class SavingAccount extends Account {
     private double incomeMonth;
 
-    public SavingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, AgencyImpl agency,double incomeMonth) {
+    public SavingAccount(String password, boolean isActive, double accNumber, double balance, LocalDate createdAt, AgencyImpl agency, double incomeMonth) {
         super(password,isActive,accNumber,balance,createdAt, agency);
         this.incomeMonth = incomeMonth;
     }

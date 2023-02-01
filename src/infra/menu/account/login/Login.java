@@ -1,6 +1,7 @@
-package infra.menu.account;
+package infra.menu.account.login;
 
 import java.io.*;
+
 public class Login implements Hash {
     private String accountNumber;
     private String password;
@@ -11,9 +12,8 @@ public class Login implements Hash {
             this.password = password;
             System.out.println("Login Successful!");
         } else {
-            System.out.println("Invalid Account number/password!");
+            throw new IOException("Invalid Account number/password!");
         }
-
     }
 
     private boolean login(String accountNumber, String password) throws IOException { //Verifica se o Login existe

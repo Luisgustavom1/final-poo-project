@@ -9,13 +9,12 @@ public class BalanceTransaction extends Transaction {
     String channel
   ) {
     super(
-      0.00,
       account,
       channel
     );
   }
 
-  public double execute() {
+  public double execute(double value) {
     this.getAccount().setLastTransactionAt(LocalDate.now());
     return this.getAccount().getBalance();
   }
