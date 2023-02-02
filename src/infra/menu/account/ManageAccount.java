@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class ManageAccount {
     private static Repository transactionRepository = new Repository("transactions.dat");
+    private static Repository accountRepository = new Repository("accounts.dat");
     private static Scanner sc = new Scanner(System.in);
     private static Account account = null;
 
@@ -41,7 +42,7 @@ public class ManageAccount {
 
     public static void CreateBankStatement(){
         System.out.printf("===== Generate bank statement of account %f ======\n", account.getAccNumber());
-        ManageAccount.loadTransaction();
+        ManageAccount.LoadTransaction();
     }
 
     public static void CreateTransaction() {
@@ -56,41 +57,45 @@ public class ManageAccount {
         );
         System.out.printf("Option: ");
         try {
-            switch (sc.nextInt()) {
+            int optionSelected = sc.nextInt();
+
+            System.out.printf("Enter with channel: ");
+            String channel = sc.next();
+
+            switch (optionSelected) {
                 case 1:
-                    System.out.printf("Enter with channel: ");
                     transaction = new BalanceTransaction(
                             account,
-                            sc.next()
+                            channel
                     );
-                    transaction.execute(0.0);
+                    System.out.println("Your balance: R$" + transaction.execute(0.0));
                     break;
                 case 2:
-                    System.out.printf("Enter with channel: ");
                     transaction = new DepositTransaction(
                             account,
-                            sc.next()
+                            channel
                     );
                     System.out.printf("Enter with value: ");
                     transaction.execute(sc.nextDouble());
+                    System.out.println("Deposit of... R$" + transaction.getValue());
                     break;
                 case 3:
-                    System.out.printf("Enter with channel: ");
                     transaction = new PaymentTransaction(
                             account,
-                            sc.next()
+                            channel
                     );
                     System.out.printf("Enter with value: ");
                     transaction.execute(sc.nextDouble());
+                    System.out.println("Payment of... R$" + transaction.getValue());
                     break;
                 case 4:
-                    System.out.printf("Enter with channel: ");
                     transaction = new WithdrawTransaction(
                             account,
-                            sc.next()
+                            channel
                     );
                     System.out.printf("Enter with value: ");
                     transaction.execute(sc.nextDouble());
+                    System.out.println("Withdraw of... R$" + transaction.getValue());
                     break;
                 default:
                     System.out.println("Item not found\n");
@@ -109,14 +114,22 @@ public class ManageAccount {
             transactions.add(transaction);
 
             transactionRepository.write(transactions);
-            System.out.println("\n==== Transaction created successfully!! ====\n");
+            ArrayList<Object> accounts = accountRepository.read();
+            accounts.forEach(acc -> {
+                Account accountInAnalysis = (Account) acc;
+                
+                if(accountInAnalysis.getAccNumber() == account.getAccNumber()) {
+                    accountInAnalysis.setBalance(account.getBalance());
+                }
+            });
+            accountRepository.write(accounts);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             ManageAccount.InitMenu(account);
         }
     }
 
-    public static void loadTransaction(){
+    public static void LoadTransaction(){
 
         try {
             ArrayList<Object> transactions = transactionRepository.read();
@@ -124,7 +137,7 @@ public class ManageAccount {
             for (int c = 0; c < transactions.size(); c++) {
                 Transaction t = (Transaction) transactions.get(c);
 
-                if(t.getAccount().getAccNumber() == account.getAccNumber()) System.out.println(t.getAccount());
+                if(t.getAccount().getAccNumber() == account.getAccNumber()) System.out.println(t.toString());
             }
             System.out.println("");
         } catch (IOException e) {

@@ -24,16 +24,19 @@ public class NewLogin {
 
         try {
             ArrayList<Object> accounts = accountRepository.read();
+            Account loggedAccount = null;
 
             for (int c = 0; c < accounts.size(); c++) {
-                Account a = (Account) accounts.get(c);
-
-                if((a.getAccNumber() == accNumber) && (a.getPassword().equals(password))) {
-                    ManageAccount.InitMenu(a);
+                Account acc = (Account) accounts.get(c);
+                if((acc.getAccNumber() == accNumber) && (acc.getPassword().equals(password))) {
+                    loggedAccount = acc;
+                    ManageAccount.InitMenu(acc);
                 }
-
             }
-            System.out.println("");
+            
+            if (loggedAccount == null) {
+                System.out.println("\nIncorrect account or password, please try again!\n");
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

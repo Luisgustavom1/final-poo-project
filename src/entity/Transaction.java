@@ -36,4 +36,13 @@ public abstract class Transaction implements Serializable {
   public String getChannel() {
     return this.channel;
   }
+
+  public String toString() {
+    return "Transaction { " +
+        "AccNumber = '" + this.account.getAccNumber() + '\'' +
+        ", Value = 'R$" + this.value + '\'' +
+        ", Channel = '" + this.channel + '\'' +
+        ", Done in = '" + this.createdAt.toString() + '\'' +
+        '}';
+  }
 }
